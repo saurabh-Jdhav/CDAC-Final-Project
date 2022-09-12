@@ -46,7 +46,7 @@ function Navbarcomp() {
                   <Nav.Link href="/login">Login</Nav.Link>
                   <Nav.Link href="/signup">Signup</Nav.Link>
                   
-                  <Nav.Link href="/admin">Admin</Nav.Link>
+                  <Nav.Link href="/adminlogin">Admin</Nav.Link>
                   <Nav.Link href="/" onClick={()=>{sessionStorage["userId"]=0;sessionStorage["email"]=""}}>Logout</Nav.Link>
                   <NavDropdown
                     title="Dropdown"

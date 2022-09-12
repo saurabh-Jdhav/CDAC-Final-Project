@@ -15,6 +15,9 @@ import PaymentRecipet from './components/PaymentRecipet.js';
 import AdminPanel from './components/admin/AdminPanel.js';
 import AdminUserBookings from './components/admin/AdminUserBookings';
 import AdminDashboard from './components/admin/AdminDashboard.js';
+import AdminTest from './components/admin/AdminTest.js';
+import AdminPatient from './components/admin/AdminPatient.js';
+import AdminLogin from './components/admin/AdminLogin.js';
 
 function App() {
   return (
@@ -33,9 +36,12 @@ function App() {
           <Route path='/testbook' element={<TestBook />} />
           <Route path='/payment' element={<Payment />} />
           <Route path='/PaymentReciept' element={<PaymentRecipet />} />
+          <Route exact path="/adminlogin" element={<AdminLogin/>} />
           <Route exact path="/admindash" element={<AdminDashboard />} />
           <Route exact path="/adminusers" element={<AdminPanel />} />
           <Route exact path="/adminUserbookings" element={<AdminUserBookings />} />
+          <Route exact path="/adminTest" element={<AdminTest />} />
+          <Route exact path="/adminPatient" element={<AdminPatient/>} />
           
         </Routes>
         {/* <FooterPage/>  */}

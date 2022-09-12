@@ -62,13 +62,13 @@ const postpayment =() =>
                 </div>
                 <div>
                   <p className="d-flex flex-column mb-0 text-primary">
-                   <b>Card Number</b><span className="small text-muted"></span>
+                   <strong>Card Number</strong><span className="small text-muted"></span>
                     <input type ="text" className="form-control forminputshade" placeholder='Enter Your card Number' onChange={(e) => setcardnumber(e.target.value)}/>
-                    <b>CVV</b><span className="small text-muted"></span>
+                    <strong>CVV</strong><span className="small text-muted"></span>
                     <input type ="text" className="form-control forminputshade" placeholder='Enter Your CVV' onChange={(e) => setcvv(e.target.value)}/>
-                    <b>Expirity Date</b><span className="small text-muted"></span>
+                    <strong>Expirity Date</strong><span className="small text-muted"></span>
                     <input type ="text" className="form-control forminputshade" placeholder='Expirity Date Of Card' onChange={(e) => setvalidtill(e.target.value)}/>
-                    <b>Name On Card</b><span className="small text-muted"></span>
+                    <strong>Name On Card</strong><span className="small text-muted"></span>
                     <input type ="text" className="form-control forminputshade" placeholder='Enter Your Name' onChange={(e) => setnameoncard(e.target.value)}/>
                   </p>
                 </div> 

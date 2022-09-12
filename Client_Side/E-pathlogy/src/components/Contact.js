@@ -86,7 +86,7 @@ const Contact = () => {
             <ul className="list-unstyled mb-0">
                 <li><i className="fas fa-map-marker-alt fa-2x"></i>
                 <strong>Address</strong>
-                <p><b>CDAC Labs</b></p>
+                <p><strong>CDAC Labs</strong></p>
                     <p>Jasola Road <br></br>
 					 Opposite chandnichowk, <br></br>
 					 MG road,New Delhi 111111</p>
