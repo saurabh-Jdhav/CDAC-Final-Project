@@ -44,7 +44,7 @@ function App() {
           <Route exact path="/adminPatient" element={<AdminPatient/>} />
           
         </Routes>
-        {/* <FooterPage/>  */}
+        <FooterPage/> 
       </BrowserRouter>
     </>
   );

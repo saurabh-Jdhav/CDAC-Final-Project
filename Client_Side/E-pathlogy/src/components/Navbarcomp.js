@@ -10,7 +10,7 @@ function Navbarcomp() {
   return (
     <>
       {[false].map((expand) => (
-        <Navbar key={expand} bg="success" variant="dark" expand={expand} className="mb-3">
+        <Navbar key={expand} bg="success" variant="dark" expand={expand} className="mb-3 sticky-top" >
           <Container fluid>
           {/* <img
                   src={web}

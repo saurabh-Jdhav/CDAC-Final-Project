@@ -1,6 +1,7 @@
 .areaSize {
   resize: none;
 }
+
 b {
   color: #d25656;
 
@@ -15,19 +16,23 @@ b {
   text-shadow: -5px -4px 2px rgba(193, 94, 221, 0.43), 1px -1px 0 #fe6161,
     2px 1px 3px #737272, 3px 3px 1px #37408c;
 }
+
 .testModify {
   width: 500px;
 }
+
 input.forminputshade:focus {
   outline: none !important;
   border: 1px solid rgba(4, 208, 14, 0.881);
   box-shadow: 0 0 7px #24f028;
 }
+
 textarea.forminputshade:focus {
   outline: none !important;
   border: 1px solid rgba(4, 208, 14, 0.881);
   box-shadow: 0 0 7px #24f028;
 }
+
 .forminputshade {
   border-color: rgb(155, 248, 166);
   box-shadow: 0px 0.5px 0.5px rgba(0, 0, 0, 0) inset,
@@ -40,10 +45,12 @@ textarea.forminputshade:focus {
   margin-left: 100px;
   margin-top: -150px;
 }
+
 #hometitle {
   margin-top: 180px;
   margin-left: 50px;
 }
+
 #header {
   width: 100%;
   height: 90vh;
@@ -87,6 +94,7 @@ textarea.forminputshade:focus {
   opacity: 100%;
   background-position: right;
 }
+
 #header .btn-get-started:hover {
   background: #3498bd;
   color: rgba(255, 255, 255, 0.901);
@@ -104,6 +112,7 @@ textarea {
   width: 50%;
   height: 150px;
 }
+
 .receipt-content .logo a:hover {
   text-decoration: none;
   color: #7793c4;
@@ -122,6 +131,7 @@ textarea {
   color: #a9b0bb;
   display: block;
 }
+
 .receipt-content .invoice-wrapper .payment-details a {
   display: inline-block;
   margin-top: 5px;
@@ -150,6 +160,7 @@ textarea {
 .receipt-content {
   background: #eceef4;
 }
+
 @media (min-width: 1200px) {
   .receipt-content .container {
     width: 900px;
@@ -200,6 +211,7 @@ textarea {
     margin-top: 20px;
   }
 }
+
 .receipt-content .invoice-wrapper .payment-details {
   border-top: 2px solid #ebecee;
   margin-top: 30px;
@@ -213,9 +225,11 @@ textarea {
     margin-top: 20px;
   }
 }
+
 .receipt-content .invoice-wrapper .line-items {
   margin-top: 40px;
 }
+
 .receipt-content .invoice-wrapper .line-items .headers {
   color: #a9b0bb;
   font-size: 13px;
@@ -223,26 +237,31 @@ textarea {
   border-bottom: 2px solid #ebecee;
   padding-bottom: 4px;
 }
+
 .receipt-content .invoice-wrapper .line-items .items {
   margin-top: 8px;
   border-bottom: 2px solid #ebecee;
   padding-bottom: 8px;
 }
+
 .receipt-content .invoice-wrapper .line-items .items .item {
   padding: 10px 0;
   color: #696969;
   font-size: 15px;
 }
+
 @media (max-width: 767px) {
   .receipt-content .invoice-wrapper .line-items .items .item {
     font-size: 13px;
   }
 }
+
 .receipt-content .invoice-wrapper .line-items .items .item .amount {
   letter-spacing: 0.1px;
   color: #84868a;
   font-size: 16px;
 }
+
 @media (max-width: 767px) {
   .receipt-content .invoice-wrapper .line-items .items .item .amount {
     font-size: 13px;
@@ -317,4 +336,13 @@ textarea {
   text-align: center;
   font-size: 12px;
   color: #969cad;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }

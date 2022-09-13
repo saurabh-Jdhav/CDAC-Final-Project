@@ -80,6 +80,17 @@ public class UserController {
 	
 	}
 	
+	// admin signin
+		@PostMapping("/adminuser")
+		public String adminSignIn(@RequestBody User user) {
+			User admin = (User)user;
+			if(user.getEmail().equals("admin")&& user.getPassword().equals("admin")) {
+				return "success";
+			}
+			return "failed";
+		
+		}
+	
 
 	@DeleteMapping("/user/{UserId}")
 	public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long UserId) {

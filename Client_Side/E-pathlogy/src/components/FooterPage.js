@@ -1,71 +1,48 @@
-// import React from 'react'
+import { Link } from '@mui/material'
+import React from 'react'
 
-// function FooterPage() {
-//     return (
-//         <>
-//             <div className="container my-5">
+function FooterPage() {
+    return (
+        <>
 
-//                 <footer className="bg-light text-center text-white">
-//                     <div className="container p-4 pb-0">
-//                         <section className="mb-4">
-//                             <a
-//                                 className="btn btn-primary btn-floating m-1"
-//                                 style="background-color: #3b5998;"
-//                                 href="#!"sssssssssssss
-//                                 role="button"
-//                             ><i className="fab fa-facebook-f"></i
-//                             ></a>
+            <footer className="bg-success">
 
-//                             <a
-//                                 className="btn btn-primary btn-floating m-1"
-//                                 style="background-color: #55acee;"
-//                                 href="#!"
-//                                 role="button"
-//                             ><i className="fab fa-twitter"></i
-//                             ></a>
 
-//                             <a
-//                                 className="btn btn-primary btn-floating m-1"
-//                                 style="background-color: #dd4b39;"
-//                                 href="#!"
-//                                 role="button"
-//                             ><i className="fab fa-google"></i
-//                             ></a>
+                <div className="container">
 
-//                             <a
-//                                 className="btn btn-primary btn-floating m-1"
-//                                 style="background-color: #ac2bac;"
-//                                 href="#!"
-//                                 role="button"
-//                             ><i className="fab fa-instagram"></i
-//                             ></a>
+                    <div className="row d-flex justify-content-center">
 
-//                             <a
-//                                 className="btn btn-primary btn-floating m-1"
-//                                 style="background-color: #0082ca;"
-//                                 href="#!"
-//                                 role="button"
-//                             ><i className="fab fa-linkedin-in"></i
-//                             ></a>
-//                             <a
-//                                 className="btn btn-primary btn-floating m-1"
-//                                 style="background-color: #333333;"
-//                                 href="#!"
-//                                 role="button"
-//                             ><i className="fab fa-github"></i
-//                             ></a>
-//                         </section>
-//                     </div>
 
-//                     <div className="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-//                         © 2020 Copyright:
-//                         <a className="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-//                     </div>
-//                 </footer>
+                        <div className="col-md-6 pt-3 pb-2" style={{ height: "60px" }}>
+                            <div className="mb-5 d-flex justify-content-between">
 
-//             </div>
-//         </>
-//     )
-// }
+                                <div>
+                                    <a href="https://www.facebook.com/"><i class="bi bi-facebook h3 text-light"></i></a>
+                                </div>
+                                <div><a href="https://www.twitter.com/"><i class="bi bi-twitter h3 text-light"></i></a></div>
+                                <div><a href="https://www.instagram.com/"><i class="bi bi-instagram h3 text-light"></i></a></div>
+                                <div><a href="https://www.linkedin.com/"><i class="bi bi-linkedin h3 text-light"></i></a></div>
+                                <div><a href="https://www.github.com/"><i class="bi bi-github h3 text-light"></i></a></div>
 
-// export default FooterPage
+                                <div className="footer-copyright text-center pt-0 pb-" style={{ color: "white" }}>© 2022 Copyright:
+                                    <a href="/" ><strong style={{ color: "white" }}>E-Pathology</strong></a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    
+                </div>
+
+
+
+
+
+
+            </footer>
+        </>
+    )
+}
+
+export default FooterPage

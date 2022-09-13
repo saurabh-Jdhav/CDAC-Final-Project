@@ -25,7 +25,13 @@ const AdminLogin = () => {
       axios
         .post("http://localhost:8080/api/user/adminuser", body)
         .then((response) => {
-          navigate("/admindash")
+          console.log(response);
+          if(response.data === "success"){
+            navigate("/admindash")
+          }
+          if(response.data === "failed"){
+            alert("Email or Password is incorrect")
+          }
         });
     }
   };
