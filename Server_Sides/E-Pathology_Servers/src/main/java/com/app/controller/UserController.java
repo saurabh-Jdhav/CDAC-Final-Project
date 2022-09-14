@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import com.app.dto.Response;
 import com.app.exception.ReasourceNotFoundException;
 import com.app.model.User;
 import com.app.repo.UserRepository;
+import com.app.service.EmailSenderService;
 import com.app.service.UserService;
 
 @CrossOrigin(origins = "*")
@@ -30,6 +32,9 @@ import com.app.service.UserService;
 @RequestMapping("/api/user/")
 public class UserController {
 
+	@Autowired
+	EmailSenderService service;
+	
 	@Autowired
 	private UserRepository userRepository;
 
@@ -49,7 +54,8 @@ public class UserController {
 		try
 		{
 		int count = userService.saveuser(user);
-		
+
+		triggerMail(user.getEmail(), user.getFirstName());
 		if (count != 0)
 			return Response.success(count + " User Added");
 		    return Response.error("User Addition Failed");
@@ -116,6 +122,15 @@ public class UserController {
 
 		User updateUser = userRepository.save(u1);
 		return ResponseEntity.ok(updateUser);
+
+	}
+	public void triggerMail(String email ,String name) throws MessagingException {
+
+		service.sendEmailWithAttachment(email,
+				"Welcome" + name +" in E-Pathology Services we are here to Serv you...",
+				"from Epathology",
+				"C:\\image.jpg"
+				);
 
 	}
 

@@ -17,12 +17,12 @@ function FooterPage() {
                             <div className="mb-5 d-flex justify-content-between">
 
                                 <div>
-                                    <a href="https://www.facebook.com/"><i class="bi bi-facebook h3 text-light"></i></a>
+                                    <a href="https://www.facebook.com/"><i className="bi bi-facebook h3 text-light"></i></a>
                                 </div>
-                                <div><a href="https://www.twitter.com/"><i class="bi bi-twitter h3 text-light"></i></a></div>
-                                <div><a href="https://www.instagram.com/"><i class="bi bi-instagram h3 text-light"></i></a></div>
-                                <div><a href="https://www.linkedin.com/"><i class="bi bi-linkedin h3 text-light"></i></a></div>
-                                <div><a href="https://www.github.com/"><i class="bi bi-github h3 text-light"></i></a></div>
+                                <div><a href="https://www.twitter.com/"><i className="bi bi-twitter h3 text-light"></i></a></div>
+                                <div><a href="https://www.instagram.com/"><i className="bi bi-instagram h3 text-light"></i></a></div>
+                                <div><a href="https://www.linkedin.com/"><i className="bi bi-linkedin h3 text-light"></i></a></div>
+                                <div><a href="https://www.github.com/"><i className="bi bi-github h3 text-light"></i></a></div>
 
                                 <div className="footer-copyright text-center pt-0 pb-" style={{ color: "white" }}>© 2022 Copyright:
                                     <a href="/" ><strong style={{ color: "white" }}>E-Pathology</strong></a>

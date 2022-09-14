@@ -27,10 +27,11 @@ const AdminLogin = () => {
         .then((response) => {
           console.log(response);
           if(response.data === "success"){
+            toast.success("Welcome Back Admin")
             navigate("/admindash")
           }
           if(response.data === "failed"){
-            alert("Email or Password is incorrect")
+            toast.warning("Email or Password is Incorrect")
           }
         });
     }

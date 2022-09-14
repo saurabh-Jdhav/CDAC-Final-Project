@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { toast } from "react-toastify"
 
 function AdminTest() {
     const [test, setTest] = useState([]);
@@ -18,14 +19,14 @@ function AdminTest() {
     const deleteTest = (id) => {
         axios
             .delete(`http://localhost:8080/api/t1/test/${id}`)
-            // .then((response) => console.log("User deleted" + response));
-            .then((response) => alert("User deleted" + response));
+            .then((response) => toast.success("Test is Deleted"));
     };
     useEffect(() => {
         getTest();
     }, []);
 
     return (
+        <>
         <div className="row ">
             {test.map((test) => {
                 return (
@@ -65,6 +66,7 @@ function AdminTest() {
                 );
             })}
         </div>
+        </>
     );
 }
 

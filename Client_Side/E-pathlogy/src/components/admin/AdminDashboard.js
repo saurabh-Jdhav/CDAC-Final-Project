@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React from 'react'
 import { useState } from 'react';
+import {toast} from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
-
+    
 
     const navigate = useNavigate();
 
@@ -31,6 +32,7 @@ const AdminDashboard = () => {
             .then((res) => {
                 console.log("AdminDashBOard" + res)
                 setBody({ testName: "", testCharges: "" })
+                toast.success("Test is Added Successfully");
             })
     }
 
@@ -40,7 +42,7 @@ const AdminDashboard = () => {
     }
 
     return (
-        <div className='row' style={{ height: "80vh" }}>
+        <div className='row' style={{ height: "80vh", overflow:'hidden' }}>
 
             {/* 1ND COLOUMN */}
             <div className='col-md-6'>

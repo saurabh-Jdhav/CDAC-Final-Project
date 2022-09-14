@@ -52,7 +52,7 @@ const Patientdetails = () => {
   else if (state.length === 0) {
     toast.warning("please enter your state")
   }
-  else if (adhaarNo.length === 0) {
+  else if (!adhaarNo.length === 12) {
     toast.warning("please enter your Adhaar Number")
   }
   else {
@@ -90,8 +90,7 @@ const Patientdetails = () => {
       navigate('/testbook')
     }
     else {
-      // toast.error("Invalid Details")
-      Alert("Details Already Exist");
+      toast.error("Invalid Details")
       navigate('/testbook');
     }
    });

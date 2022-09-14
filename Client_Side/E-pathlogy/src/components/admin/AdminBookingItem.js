@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 function AdminBookingItem(props) {
 
@@ -9,7 +10,7 @@ function AdminBookingItem(props) {
 
   const deleteBooking=(id)=>{
     axios.delete(`http://localhost:8080/api/b1/booking/${id}`)
-    .then((response) => console.log("User deleted"+response));
+    .then((response) => toast.success("Booking is Deleted "));
   }
   return (
     <>

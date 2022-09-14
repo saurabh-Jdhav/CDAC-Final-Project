@@ -1,4 +1,6 @@
 import './App.css';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbarcomp from './components/Navbarcomp.js';
 import { Route, Routes, BrowserRouter } from 'react-router-dom'
 import Home from './components/Home.js';
@@ -19,6 +21,7 @@ import AdminTest from './components/admin/AdminTest.js';
 import AdminPatient from './components/admin/AdminPatient.js';
 import AdminLogin from './components/admin/AdminLogin.js';
 
+toast.configure()
 function App() {
   return (
     <>

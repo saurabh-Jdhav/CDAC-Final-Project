@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 function AdminPatient() {
     
@@ -19,8 +20,7 @@ function AdminPatient() {
     const deletepatient = (id) => {
         axios
             .delete(`http://localhost:8080/api/p1/patient/${id}`)
-            // .then((response) => console.log("User deleted" + response));
-            .then((response) => alert("User deleted" + response));
+            .then((response) => toast.success("Patient is Deleted"));
     };
 
 

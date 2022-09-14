@@ -1,10 +1,10 @@
 import React from 'react'
 import UserItem from './AdminUserItem.js'
 import { useState,useEffect } from 'react';
-import axios from 'axios';
 
 function AdminPanel() {
     const [user, setUser] = useState([]);
+    
     const getUser=async()=>{
         
         let baseUrl= "http://localhost:8080/api/user/alluser";

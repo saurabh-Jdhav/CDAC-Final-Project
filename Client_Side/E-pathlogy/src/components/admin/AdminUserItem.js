@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { toast } from "react-toastify"
 
 const UserItem = (props) => {
 
@@ -8,7 +9,10 @@ const UserItem = (props) => {
     const navigate = useNavigate();
     const deleteUser = (id) => {
     axios.delete(`http://localhost:8080/api/user/user/${id}`)
-    .then((response) => console.log("User deleted"+response));
+    .then((response) => {
+        console.log("User deleted"+response)
+        toast.success("Test is Deleted")
+    });
     }
 
     const redirectBookings=(id) => {

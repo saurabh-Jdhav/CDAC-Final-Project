@@ -62,14 +62,14 @@ const TestBook = () => {
            toast.success("proceed to payment");
            navigate("/payment")
         } else {
-            toast.error("bhaag jaa");
+            toast.error("Something went Wrong!!!");
         }
       });
   };
 
   return (
     <>
-      <div className=" mx-auto" Style="width: 200px; mt-10 ">
+      <div className=" mx-auto" style={{height:"80vh",paddingTop:"150px"}}>
         <div className=" container-fluid  text-center h-50">
           <div className="container colalign-self-center">
             <select className="custom-select" onChange={handleSettest1}  >

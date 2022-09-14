@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import com.app.dto.Response;
 import com.app.exception.ReasourceNotFoundException;
 import com.app.model.Patient;
 import com.app.repo.PatientRepository;
+import com.app.service.EmailSenderService;
 
 
 
@@ -31,7 +33,10 @@ import com.app.repo.PatientRepository;
 @RestController
 @RequestMapping("/api/p1/")
 public class PatientController {
-
+	
+	@Autowired
+	private EmailSenderService service;
+	
 	@Autowired
 	private PatientRepository patientRepository;
 	
@@ -53,6 +58,13 @@ public class PatientController {
 	  public ResponseEntity<?> createPatient(@RequestBody Patient patient) 
 	  {
 		 patientRepository.save(patient); 
+
+		    try {
+				triggerMail(patient.getEmail(),patient.getFirstName());
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch blocks
+				e.printStackTrace();
+			}
 		 return Response.success(patient); 
 		 
 	  }
@@ -94,5 +106,15 @@ public class PatientController {
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
+	}
+	
+	public void triggerMail(String email ,String name) throws MessagingException {
+
+		service.sendEmailWithAttachment(email,
+				"Welcome\" + name +\" in E-Pathology Services we are here to help you...",
+				"from Epathology",
+				"C:\\image.jpg"
+				);
+
 	}
 }
