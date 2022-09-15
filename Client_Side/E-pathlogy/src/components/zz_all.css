@@ -3,7 +3,7 @@
 }
 
 b {
-  color: #d25656;
+  color: #ffffff;
 
   font-size: 17px;
 
@@ -13,7 +13,7 @@ b {
 
   letter-spacing: 0.1em;
 
-  text-shadow: -5px -4px 2px rgba(193, 94, 221, 0.43), 1px -1px 0 #fe6161,
+  text-shadow: -5px -4px 2px rgba(193, 94, 221, 0.43), 1px -1px 0 #ffffff,
     2px 1px 3px #737272, 3px 3px 1px #37408c;
 }
 

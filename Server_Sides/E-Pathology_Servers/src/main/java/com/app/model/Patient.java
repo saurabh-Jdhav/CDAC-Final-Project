@@ -26,10 +26,10 @@ public class Patient {
 	
 	private String LastName;
 	
-	@Column(unique = true)
+	@Column(unique = false)
 	private long MobileNo;
 	
-	@Column(unique = true)
+	@Column(unique = false)
 	private String Email;
 	
 	private String Address;
@@ -38,7 +38,7 @@ public class Patient {
 	
 	private String State;
 	
-	@Column(unique = true)
+	@Column(unique = false)
 	private long AdhaarNo;
 	
 	@OneToMany(fetch = FetchType.EAGER,mappedBy="test",cascade = CascadeType.MERGE)

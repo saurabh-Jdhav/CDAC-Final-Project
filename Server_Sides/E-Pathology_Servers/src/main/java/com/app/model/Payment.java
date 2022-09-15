@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Payment 
@@ -17,10 +19,13 @@ public class Payment
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
  private long CardId;
+
 @Column(unique = true)	
  private long CardNo;
  
- private Date ValidTill;
+@Temporal(TemporalType.DATE)
+ private Date validTill;
+ 
  @Column(unique = true)
  private int Cvv;
  
@@ -30,8 +35,26 @@ public class Payment
  
  private String NameOnCard;
  
+ 
+ private String dateString;
 
  
+
+public String getDateString() {
+	return dateString;
+}
+
+public void setDateString(String dateString) {
+	this.dateString = dateString;
+}
+
+public User getUser() {
+	return user;
+}
+
+public void setUser(User user) {
+	this.user = user;
+}
 
 public long getCardNo() {
 	return CardNo;
@@ -42,11 +65,11 @@ public void setCardNo(long cardNo) {
 }
 
 public Date getValidTill() {
-	return ValidTill;
+	return validTill;
 }
 
 public void setValidTill(Date validTill) {
-	ValidTill = validTill;
+	this.validTill = validTill;
 }
 
 public int getCvv() {
@@ -76,7 +99,7 @@ public void setCardId(long cardId) {
 public Payment(long cardNo, Date validTill, int cvv, String nameOnCard, long cardId) {
 	super();
 	CardNo = cardNo;
-	ValidTill = validTill;
+	this.validTill = validTill;
 	Cvv = cvv;
 	NameOnCard = nameOnCard;
 	CardId = cardId;

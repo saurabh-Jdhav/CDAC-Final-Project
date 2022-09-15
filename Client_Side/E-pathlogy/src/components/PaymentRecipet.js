@@ -28,7 +28,7 @@ const lastName = sessionStorage.getItem("lastName");
 
 console.log(patientName,lastName)
 
-
+	  console.log("payment"+sessionStorage["testCharges"]);
 	return (
 
 		<>
@@ -41,14 +41,14 @@ console.log(patientName,lastName)
 								<div className="intro">
 									Hi <strong>{firstName} {lastName}</strong>,
 									<br></br>
-									This is the receipt for a payment of  (USD) for your works
+									This is the receipt for a payment of <strong>Rs. {sessionStorage["testCharges"]}</strong> for your <strong>{sessionStorage["testName"]}</strong>
 								</div>
 
 								<div className="payment-info">
 									<div className="row">
 										<div className="col-sm-6">
 											<p>Payment No.</p>
-											<strong>434334343</strong>
+											<strong>{Math.random().toString(16).substr(2, 8)}</strong>
 										</div>
 										<div className="col-sm-6 text-right">
 											<p>Payment Date</p>
@@ -135,7 +135,7 @@ console.log(patientName,lastName)
 										<center>
 											<p className="extra-notes">
 												<strong>Address</strong>
-												<strong>40/8147, C II Floor, Narakathara Road Opposite Shenoy's Theatre, Ernakulam, Kerala 682035</strong>
+												<strong>Centre for Development of Advanced Computing Plot no. 20, FC-33,Institutional Area,Jasola,New Delhi - 110025(India)</strong>
 											</p>
 										</center>
 									</div>

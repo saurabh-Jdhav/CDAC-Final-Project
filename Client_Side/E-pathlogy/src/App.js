@@ -38,7 +38,7 @@ function App() {
           <Route path='/patient' element={<PatientDetails />} />
           <Route path='/testbook' element={<TestBook />} />
           <Route path='/payment' element={<Payment />} />
-          <Route path='/PaymentReciept' element={<PaymentRecipet />} />
+          <Route path='/paymentReciept' element={<PaymentRecipet />} />
           <Route exact path="/adminlogin" element={<AdminLogin/>} />
           <Route exact path="/admindash" element={<AdminDashboard />} />
           <Route exact path="/adminusers" element={<AdminPanel />} />

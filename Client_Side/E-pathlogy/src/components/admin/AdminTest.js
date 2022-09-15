@@ -1,10 +1,41 @@
 import axios from "axios";
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify"
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
 function AdminTest() {
+    
+    const updateRef = useRef(null)
+    const [editTest, setEditTest] = useState({tesName:"",testCharges:""});
+    const [show, setShow] = useState(false);
+  
+    const handleClose = () => {
+        setShow(false)
+    };
+
+    const handleShow = () => {
+        setShow(true)
+    };
+
+    const change =(e)=>{
+        setEditTest({...editTest,[e.target.name]:e.target.value})
+    }
+
+    const redForUpdate =()=>{
+        axios.put(`http://localhost:8080/api/t1/test/${editTest.testId}`,editTest)
+        .then((response) =>{
+            console.log("UpdatedTest "+response)
+            toast.success("Test is Updated");
+        });
+        
+        setShow(false)
+    }
+
+
     const [test, setTest] = useState([]);
     const getTest = async () => {
         let baseUrl = `http://localhost:8080/api/t1/test`;
@@ -21,16 +52,67 @@ function AdminTest() {
             .delete(`http://localhost:8080/api/t1/test/${id}`)
             .then((response) => toast.success("Test is Deleted"));
     };
+
+    const updateTest = (test) =>{
+        setEditTest(test)
+        updateRef.current.click();
+    }
+
     useEffect(() => {
         getTest();
     }, []);
 
     return (
         <>
+        <Button ref={updateRef} variant="success d-none" onClick={handleShow}>
+          Launch demo modal
+        </Button>
+  
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Test Name"
+                  name="testName"
+                  value={editTest.testName}
+                  onChange={change}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Example textarea</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="Test Charges"
+                  name="testCharges"
+                  value={editTest.testCharges}
+                  onChange={change}
+                />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="success" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="success" onClick={redForUpdate}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
         <div className="row ">
             {test.map((test) => {
                 return (
-                    <div className="col-md-4 my-2">
+                    <div key={test.testId} className="col-md-4 my-2">
                         <div
                             key={test.testId}
                             className="card bg-success"
@@ -43,9 +125,10 @@ function AdminTest() {
                                         onClick={() => deleteTest(test.testId)}
                                         style={{ margin: "-2px 0px", color: "#CD5C5C" }}
                                     ></i>
+                                    <i className="bi bi-pencil-square mx-2 h4" onClick={()=>updateTest(test)}></i>
                                 </div>
-                                <div class="d-flex h-100">
-                                    <div class="d-flex flex-column">
+                                <div className="d-flex h-100">
+                                    <div className="d-flex flex-column">
                                         <h5>
                                             <b>TEST ID : </b>
                                             {test.testId}

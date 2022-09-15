@@ -24,7 +24,7 @@ const Patientdetails = () => {
   const [address,setaddress]=useState ("")
   const [email,setemail]=useState ("")
   const [city,setcity]=useState ("")
-  const [state,setstate]=useState ("")
+  const [state,setstate]=useState ("1")
   const [adhaarNo,setaadharno]=useState ("")
   
   
@@ -115,7 +115,7 @@ const Patientdetails = () => {
         </div>
         <div  className="form-group col-md-6">
           <label >Mobile Number</label>
-          <input type="text"  className="form-control forminputshade" id="mobileno" placeholder=" Patient Mobile Number" value={mobileNo}
+          <input type="number"  className="form-control forminputshade" id="mobileno" placeholder=" Patient Mobile Number" value={mobileNo}
                         onChange={(e) => setmobileno(e.target.value)}/>
         </div>
         <div  className="form-group col-md-6">
@@ -125,7 +125,7 @@ const Patientdetails = () => {
         </div>
         <div  className="form-group col-md-6">
           <label >Aadhar Number</label>
-          <input type="text"  className="form-control forminputshade" id="aadharno" placeholder="Patient Aadhar Number" value={adhaarNo}
+          <input type="number"  className="form-control forminputshade" id="aadharno" placeholder="Patient Aadhar Number" value={adhaarNo}
                         onChange={(e) => setaadharno(e.target.value)}/>
         </div>
       </div>

@@ -3,15 +3,17 @@ import axios from "axios";
 import { useNavigate } from "react-router"
 import { toast } from "react-toastify"
 import { Link } from "react-router-dom";
+import DatePicker from "react-date-picker";
 
 
 const Payment = () => {
 const navigate = useNavigate()
-//const [CardId,setcardid] = useState("")
+
+const [dateString, setDateString] = useState(new Date());
 const [cardNo,setcardnumber] = useState(0)
 const [cvv,setcvv] = useState(0)
 const [nameOnCard,setnameoncard] = useState("")
-const [validtill,setvalidtill] = useState("")
+
 useEffect(() => {
   if(!sessionStorage["userId"]>0 || (sessionStorage["email"]===null || sessionStorage["email"]==="")){
     navigate("/login")
@@ -23,19 +25,16 @@ const postpayment =() =>
 {
   
   var postdata = {
-    //CardId,
     cardNo,
     cvv,
     nameOnCard,
-    validtill,
+    dateString:dateString+"",
+    user:sessionStorage["userId"]
   };
+  
   axios.post("http://localhost:8080/api/pt1/payment",postdata)
   .then((response) =>{
-    // console.log("=>") 
-    // console.log(response)
-    // console.log("=====") 
     var result = response["data"]
-    // console.log(result)
 
     if (result["status"] === "success"){
       toast.success("Payment successful")
@@ -63,13 +62,19 @@ const postpayment =() =>
                 <div>
                   <p className="d-flex flex-column mb-0 text-primary">
                    <strong>Card Number</strong><span className="small text-muted"></span>
-                    <input type ="text" className="form-control forminputshade" placeholder='Enter Your card Number' onChange={(e) => setcardnumber(e.target.value)}/>
+                    <input type ="number" className="form-control forminputshade" placeholder='Enter Your card Number' onChange={(e) => setcardnumber(e.target.value)}/>
                     <strong>CVV</strong><span className="small text-muted"></span>
-                    <input type ="text" className="form-control forminputshade" placeholder='Enter Your CVV' onChange={(e) => setcvv(e.target.value)}/>
+                    <input type ="number" className="form-control forminputshade" placeholder='Enter Your CVV' onChange={(e) => setcvv(e.target.value)}/>
                     <strong>Expirity Date</strong><span className="small text-muted"></span>
-                    <input type ="text" className="form-control forminputshade" placeholder='Expirity Date Of Card' onChange={(e) => setvalidtill(e.target.value)}/>
+                    <DatePicker className="form-control forminputshade"
+                      onChange={setDateString}
+                      value={dateString}
+                      format="yyyy-MM-dd"
+                      minDate={new Date()}
+                    />
                     <strong>Name On Card</strong><span className="small text-muted"></span>
                     <input type ="text" className="form-control forminputshade" placeholder='Enter Your Name' onChange={(e) => setnameoncard(e.target.value)}/>
+                    
                   </p>
                 </div> 
               </div>
@@ -93,7 +98,7 @@ const postpayment =() =>
                     </div>
                     <div className="d-flex flex-column">
                       <p className="mb-1 small text-primary">Total amount</p>
-                      <h6 className="mb-0 text-primary">$</h6>
+                      <h6 className="mb-0 text-primary">Rs. {sessionStorage["testCharges"]}</h6>
                     </div>
                   </div>
                 </div>
@@ -121,7 +126,7 @@ const postpayment =() =>
               </div>
   
               <div className="d-flex justify-content-between align-items-center pb-1">
-                <Link to="#" className="text-muted">Go back</Link>
+                <Link to="/testbook" className="text-muted">Go back</Link>
                 <button type="button" className="btn btn-success btn-lg" onClick={postpayment}>Pay amount</button>
               </div>
             </div>

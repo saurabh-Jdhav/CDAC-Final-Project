@@ -15,7 +15,4 @@ User findByEmail(String email);
 @Modifying
 @Query(value ="INSERT into user (firstName,lastName,email,password) VALUES (?1,?2,?3,?4)",nativeQuery = true)
 int addUser(String firstName,String lastName,String email,String password);
-
-
-
 }

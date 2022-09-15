@@ -1,10 +1,14 @@
 package com.app.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,23 +24,56 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.Response;
 import com.app.exception.ReasourceNotFoundException;
 import com.app.model.Payment;
+import com.app.model.Test;
 import com.app.repo.PaymentRepository;
+import com.app.repo.TestRepository;
+import com.razorpay.Order;
+import com.razorpay.RazorpayClient;
+import com.razorpay.RazorpayException;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/pt1/")
 public class PaymentController {
 
 	@Autowired
-	private PaymentRepository paymentRepository;
+	private PaymentRepository paymentRepository;	
+	
+	// For payment razor pay
+	@PostMapping("/razorpay")
+	public String razor(@RequestBody String testId) {
+		try {			
+		RazorpayClient razorpay = new RazorpayClient("rzp_test_XwKxuWFVKyiPHV", "ch5KSa6kja6ALGZHQjOqmtsy");
+
+		  JSONObject orderRequest = new JSONObject();
+		  orderRequest.put("amount", "100"); // amount in the smallest currency unit
+		  orderRequest.put("currency", "INR");
+		  orderRequest.put("receipt", "order_rcptid_11");
+
+		  Order order = razorpay.orders.create(orderRequest);
+		  return order.get("id") ;
+		} catch (RazorpayException e) {
+		  // Handle Exception
+		  System.out.println(e.getMessage());
+		}
+		return "failed";
+
+	}
 	
 	// get all employees
 	@GetMapping("/payment")
 	public List<Payment> getAllpayment(){
 		return paymentRepository.findAll();
 	}
+	
 	@PostMapping("/payment") 
 	  public ResponseEntity<?> createPatient(@RequestBody Payment payment) 
 	  {
+		try {
+			payment.setValidTill(new SimpleDateFormat("yyyy/MM/dd").parse(payment.getDateString()));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 paymentRepository.save(payment); 
 		 return Response.success(payment); 
 		 
