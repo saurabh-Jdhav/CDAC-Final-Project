@@ -4,14 +4,17 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify"
 
 const UserItem = (props) => {
-
+    
     let { userItem } = props
     const navigate = useNavigate();
     const deleteUser = (id) => {
     axios.delete(`http://localhost:8080/api/user/user/${id}`)
     .then((response) => {
         console.log("User deleted"+response)
+        // window.location.reload();
+        navigate(0);
         toast.success("Test is Deleted")
+
     });
     }
 
@@ -19,9 +22,9 @@ const UserItem = (props) => {
     navigate("/adminUserbookings",{state : {id:id}})
     }
    
-    const updateNote = () => {
+    // const updateNote = () => {
 
-    }
+    // }
     return (
         <div className="col-md-4 my-2 ">
             <div className="card bg-success " style={{ color: "white" }}>
@@ -33,7 +36,7 @@ const UserItem = (props) => {
                         </div>
                         <div className="d-flex flex-row-reverse iconRight">
                             <i className="bi bi-trash3" onClick={() => deleteUser(userItem.userId)}></i>
-                            <i className="bi bi-pencil-square mx-2" onClick={() => { updateNote() }} ></i>
+                            {/* <i className="bi bi-pencil-square mx-2" onClick={() => { updateNote() }} ></i> */}
                         </div>
                     </div>
                     <h5 className="card-text">{userItem.firstName + " " + userItem.lastName}</h5>

@@ -84,7 +84,7 @@ const AdminLogin = () => {
 
                 <div className="d-flex justify-content-between align-items-center">
                  
-                  <a href="#" className="text-body">
+                  <a href="/#" className="text-body">
                     Forgot password?
                   </a>
                 </div>

@@ -55,4 +55,21 @@ public class EmailSenderService {
         System.out.println("Mail Send...");
 
     }
+    
+    public void sendEmailForNewRegistration(String email) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("ekrishisevaportal@gmail.com");
+		message.setTo(email);
+		message.setSubject("Thank you for Registering with us!");
+		message.setText("WELCOME to the E krushi Seva ");
+		mailSender.send(message);
+	}
+
+	public void sendOtp(String email, String otp) {
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo(email);
+		message.setSubject("OTP");
+		message.setText(otp);
+		mailSender.send(message);
+	}
 }

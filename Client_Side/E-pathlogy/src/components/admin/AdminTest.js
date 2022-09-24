@@ -6,9 +6,10 @@ import { toast } from "react-toastify"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from "react-router-dom";
 
-function AdminTest() {
-    
+function AdminTest() { 
+  const navigate = useNavigate(null);
     const updateRef = useRef(null)
     const [editTest, setEditTest] = useState({tesName:"",testCharges:""});
     const [show, setShow] = useState(false);
@@ -30,6 +31,7 @@ function AdminTest() {
         .then((response) =>{
             console.log("UpdatedTest "+response)
             toast.success("Test is Updated");
+            navigate(0);
         });
         
         setShow(false)
@@ -51,6 +53,7 @@ function AdminTest() {
         axios
             .delete(`http://localhost:8080/api/t1/test/${id}`)
             .then((response) => toast.success("Test is Deleted"));
+            navigate(0);
     };
 
     const updateTest = (test) =>{
@@ -63,14 +66,16 @@ function AdminTest() {
     }, []);
 
     return (
-        <>
+      <>
+      <div style={{minHeight:"600px"}}>
+        
         <Button ref={updateRef} variant="success d-none" onClick={handleShow}>
           Launch demo modal
         </Button>
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Update Test</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
@@ -109,7 +114,7 @@ function AdminTest() {
           </Modal.Footer>
         </Modal>
 
-        <div className="row ">
+        <div className="row " >
             {test.map((test) => {
                 return (
                     <div key={test.testId} className="col-md-4 my-2">
@@ -149,7 +154,9 @@ function AdminTest() {
                 );
             })}
         </div>
-        </>
+        
+        </div>
+      </>
     );
 }
 

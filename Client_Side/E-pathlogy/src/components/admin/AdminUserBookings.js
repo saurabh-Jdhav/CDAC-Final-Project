@@ -26,13 +26,14 @@ function AdminUserBookings() {
   }
 
   return (
-    <div className='d-flex justify-content-center'>
+    <div className='d-flex justify-content-center' style={{minHeight:"675px"}}>
     <div className='container row d-flex justify-content-center'>
     {bookings.map((booking) => {
         return <AdminBookingItem key={booking.patient.patientId} booking={booking} />;
       })}
                   
-      </div></div>
+      </div>
+      </div>
     
   )
 }

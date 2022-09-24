@@ -17,7 +17,6 @@ contact cha table ani mail
 duplicate entry popup
 ==========================
 admin
-delete problem
 
 test detail patient id/name
 
@@ -26,3 +25,15 @@ user deleted the patient should also deleted
 ======================
 
 80 vh all cont hight
+===========================
+remove role from backend
+ patientDetails
+else part line number changed 
+add states
+
+cvv condition
+
+adminpannel name change to adminuser
+
+=====> backend
+dto TestRequest check kara

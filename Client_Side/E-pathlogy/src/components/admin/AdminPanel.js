@@ -26,12 +26,14 @@ function AdminPanel() {
       
 
   return (
-    <div className=" container row my3">
+    <div  style={{minHeight:"600px"}}>
+    <div className="row p-3 my3">
       <h2 style={{color: '#CD5C5C'}}>List of available users in our Lab</h2>
       {user.map((user) => {
         return <UserItem key={user.userId} userItem={user} />;
       })}
       
+    </div>
     </div>
   )
 }

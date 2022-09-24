@@ -3,8 +3,8 @@ import React from 'react'
 const About = () => {
   return (
     <>
-
-
+    
+    <div className="minHeight">
       <div className="main-content site-wrapper-reveal">
         <div className="page-title-area bg-img bg-img-top">
           <div className="container">
@@ -49,6 +49,7 @@ const About = () => {
       </div>
 
 
+    </div>
     </>
   )
 }

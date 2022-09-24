@@ -124,45 +124,52 @@ const TestBook = () => {
 
   return (
     <>
-      <div className=" mx-auto" style={{ height: "80vh", paddingTop: "150px" }}>
-        <div className=" container-fluid  text-center h-50">
-          <div className="container colalign-self-center">
-            <select className="custom-select" onChange={handleSettest1}>
-              {/* map is a high level iterator */}
-              {test2.map((value) => {
-                //value is a test Object that contain details of every single test provided by server as per lab requiment
-                return (
-                  <option key={value.testId} value={value.testId}>
-                    {value.testId} - {value.testName} and charges ₹
-                    {value.testCharges}/-
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+      <div className="minHeight">
+      <p style={{color :"#016a01"}} className="text-center h1 fw-bold mb-2 mx-1 mx-md-4 mt-4 ">Test Booking</p>
+          
+          <div className=" mx-auto" style={{ height: "70vh", paddingTop: "150px" }}>
+            <div className=" container-fluid  text-center h-50">
+              <strong>Test : </strong>
+              <div className="container colalign-self-center">
+                <select className="custom-select" onChange={handleSettest1}>
+                  {/* map is a high level iterator */}
+                  {test2.map((value) => {
+                    //value is a test Object that contain details of every single test provided by server as per lab requiment
+                    return (
+                      <option key={value.testId} value={value.testId}>
+                        {value.testId} - {value.testName} and charges ₹
+                        {value.testCharges}/-
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
 
-          <br></br>
-          <div className="container">
-            <DatePicker
-              onChange={changeDate}
-              value={currentDate}
-              format="yyyy-MM-dd"
-              minDate={new Date()}
-            />
+              <br></br>
+              <div className="container">
+              <strong>Date: </strong>
+              <br></br>
+                <DatePicker
+                  onChange={changeDate}
+                  value={currentDate}
+                  format="yyyy-MM-dd"
+                  minDate={new Date()}
+                />
+              </div>
+              <br></br>
+              <div className="container text-center">
+                <button
+                  type="submit"
+                  className="btn btn-success text-md-left"
+                  onClick={getTestCharges}
+                >
+                  Proceed To payment
+                </button>
+              </div>
+            </div>
           </div>
-          <br></br>
-          <div className="container text-center">
-            <button
-              type="submit"
-              className="btn btn-success text-md-left"
-              onClick={getTestCharges}
-            >
-              Proceed To payment
-            </button>
-          </div>
-        </div>
+          <div className=" mx-auto" style={{width: "200px", height:"50%"}}></div>
       </div>
-      <div className=" mx-auto" style={{width: "200px", height:"50%"}}></div>
     </>
   );
 };

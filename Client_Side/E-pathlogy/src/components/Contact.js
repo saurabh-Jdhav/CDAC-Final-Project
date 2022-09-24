@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Contact = () => {
   return (
     <>
+    <div className="minHeight">
     <div className="container">
 
 
@@ -113,6 +114,7 @@ const Contact = () => {
 
     </div>
     <hr/>
+    </div>
     </>
   )
 }

@@ -42,7 +42,7 @@ const AdminDashboard = () => {
     }
 
     return (
-        <div className='row' style={{ height: "80vh", overflow:'hidden' }}>
+        <div className='row' style={{ height: "80vh"}}>
 
             {/* 1ND COLOUMN */}
             <div className='col-md-6'>

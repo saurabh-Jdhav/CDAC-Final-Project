@@ -1,17 +1,96 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import loginimg from "../Images/lg2.png";
 import {toast} from 'react-toastify';
 import { useNavigate } from "react-router";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
 //Login component will return view 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setemail] = useState("");//email id will be collected in email using setemail from input tag
   const [password, setpassword] = useState("");//same as email
+  const [emailShow, setEmailShow] = useState(false);
+  const [otpShow, setOtpShow] = useState(false);
+  const [passwordShow, setPasswordShow] = useState(false);
+  const [changeInfo, setChangeInfo] = useState({
+                                      email:"",
+                                      otp:"",
+                                      password:""
+                                    })
 
-  //Signin fucntion is called when login button clicked
+  const dailog = {
+    emailRef: useRef(null),
+    otpRef: useRef(null),
+    passwordRef: useRef(null)
+  }
+
+  const handleClose = () => {
+    setEmailShow(false)
+    setOtpShow(false)
+    setPasswordShow(false)
+  };
+
+  const handleShow = (type) => {
+      switch (type) {
+        case "email":
+            setEmailShow(true)
+            break;
+        case "otp":
+            setOtpShow(true)
+            break;
+        case "password":
+            setPasswordShow(true)
+            break;
+        default:
+          handleClose();
+    }
+  };
+
+  const sendEmailForget=()=>{
+    axios
+        .post("http://localhost:8080/api/user/otpgenerator/", changeInfo)
+        .then((response) => {
+          console.log(response)
+        })
+    setEmailShow(false)
+    dailog.otpRef.current.click();
+  }
+
+  const sendOtpForget=()=>{
+    axios
+        .post(`http://localhost:8080/api/user/otpverify/${changeInfo.otp}`)
+        .then((response) => {
+          console.log(response)
+          if(response.data==="OTP verified"){
+              setOtpShow(false)
+              dailog.passwordRef.current.click();
+          }
+          else{
+            setOtpShow(false)
+            toast.error("Verification Failed")
+          }
+        })
+  }
+
+  const sendPasswordForget=()=>{
+    axios
+        .post(`http://localhost:8080/api/user/updatePassword/`,changeInfo)
+        .then((response) => {
+          console.log(response)
+        })
+    setPasswordShow(false)
+    toast.success("Pssword is Changed")
+  }
+
+  const change =(e)=>{
+    setChangeInfo({...changeInfo,[e.target.name]:e.target.value})
+  }
+
+  //Signin function is called when login button clicked
   const signinuser = (e) => {
     e.preventDefault();
 
@@ -53,7 +132,108 @@ const Login = () => {
       <br />
 
       <br />
+      <div className="d-none">
+
+      <Button ref={dailog.emailRef} variant="success" onClick={()=>{handleShow("email")}}>
+          Launch demo modal
+        </Button>
+  
+        <Modal show={emailShow} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Forget Password</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  value={changeInfo.email}
+                  onChange={change}
+                />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="success" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="success" onClick={sendEmailForget}>
+              Next
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        
+      <Button ref={dailog.otpRef} variant="success" onClick={()=>{handleShow("otp")}}>
+          Launch demo modal
+        </Button>
+  
+        <Modal show={otpShow} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Forget Password</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Enter OTP</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter OTP here"
+                  name="otp"
+                  value={changeInfo.otp}
+                  onChange={change}
+                />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="success" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="success" onClick={sendOtpForget}>
+              Verift OTP
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        
+        <Button ref={dailog.passwordRef} variant="success" onClick={()=>{handleShow("password")}}>
+            Launch demo modal
+          </Button>
+    
+          <Modal show={passwordShow} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Forget Password</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                  <Form.Label>New Password</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Password"
+                    name="password"
+                    value={changeInfo.password}
+                    onChange={change}
+                  />
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="success" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="success" onClick={sendPasswordForget}>
+                Confirm Password
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
+        </div>
+
       <section className="vh-90">
+
         <div className="container-fluid h-custom">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-md-9 col-lg-6 col-xl-5">
@@ -62,7 +242,7 @@ const Login = () => {
 
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
               <form>
-                <p style={{color :"#016a01"}} className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 ">
+                <p Style={{color :"#016a01"}} className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 ">
                   Log in
                 </p>
                 <div className="form-outline mb-5">
@@ -92,11 +272,12 @@ const Login = () => {
                   </label>
                 </div>
 
-                <div className="d-flex justify-content-between align-items-center">
+                <div className="d-flex justify-content-between align-items-center" onClick={()=>{dailog.emailRef.current.click()}} style={{cursor:"pointer"}}>
                  
-                  <a href="#" className="text-body">
+                 <strong> <u>
                     Forgot password?
-                  </a>
+                  </u>
+                </strong>
                 </div>
 
                 <div className="text-center text-lg-start mt-4 pt-2">
@@ -128,5 +309,6 @@ const Login = () => {
     </>
   );
 };
+
 export default Login;
 //export will return above component i.e. login.js to app.js

@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './zz_all.css';
@@ -32,12 +32,13 @@ console.log(patientName,lastName)
 	return (
 
 		<>
-
 			<div className="receipt-content">
+			<p style={{color :"#016a01"}} className="text-center h1 fw-bold">Receipt</p>
 				<div className="container bootstrap snippets bootdey">
 					<div className="row">
 						<div className="col-md-12">
 							<div className="invoice-wrapper">
+							<p className="text-center h4 fw-bold mb-2 mx-1 mx-md-2 mt-2 ">E-Pathology payment Receipt</p>
 								<div className="intro">
 									Hi <strong>{firstName} {lastName}</strong>,
 									<br></br>
@@ -47,7 +48,7 @@ console.log(patientName,lastName)
 								<div className="payment-info">
 									<div className="row">
 										<div className="col-sm-6">
-											<p>Payment No.</p>
+											<p>Receipt No.</p>
 											<strong>{Math.random().toString(16).substr(2, 8)}</strong>
 										</div>
 										<div className="col-sm-6 text-right">
@@ -79,14 +80,14 @@ console.log(patientName,lastName)
 											<strong>
 												Cdac Delhi 
 											</strong>
-											<p> 40/8147, C II Floor, 
-												 <br></br>
-												 Narakathara Road <br></br>
-												 Opposite Shenoy's Theatre, <br></br>
-												 Ernakulam, Kerala 682035<br></br>
+											<p> 
+												<br/>
+												 Centre for Development of Advanced Computing,<br></br>
+												 Plot no. 20, FC-33,Institutional Area,Jasola,<br></br>
+												 New Delhi 110025(India)<br></br>
 												 Email-
 												<Link to="#">
-													sj@cdac.in
+													saurabh@cdac.in
 												</Link>
 											</p>
 										</div>
@@ -96,41 +97,7 @@ console.log(patientName,lastName)
 
 								<div className="line-items">
 
-									<div className="items">
-										<div className="row item">
-											<div className="col-xs-4 desc">
-
-											</div>
-											<div className="col-xs-3 qty">
-
-											</div>
-											<div className="col-xs-5 amount text-right">
-
-											</div>
-										</div>
-										<div className="row item">
-											<div className="col-xs-4 desc">
-
-											</div>
-											<div className="col-xs-3 qty">
-
-											</div>
-											<div className="col-xs-5 amount text-right">
-
-											</div>
-										</div>
-										<div className="row item">
-											<div className="col-xs-4 desc">
-
-											</div>
-											<div className="col-xs-3 qty">
-
-											</div>
-											<div className="col-xs-5 amount text-right">
-
-											</div>
-										</div>
-									</div>
+									
 									<div className="total text-right">
 										<center>
 											<p className="extra-notes">

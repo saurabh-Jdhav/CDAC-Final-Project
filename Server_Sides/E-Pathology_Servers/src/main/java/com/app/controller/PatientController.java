@@ -111,9 +111,9 @@ public class PatientController {
 	public void triggerMail(String email ,String name) throws MessagingException {
 
 		service.sendEmailWithAttachment(email,
-				"Welcome\" + name +\" in E-Pathology Services we are here to help you...",
+				"Patient " + name +" in E-Pathology Services we are here to help you...",
 				"from Epathology",
-				"C:\\image.jpg"
+				"E:\\image02.jpg"
 				);
 
 	}

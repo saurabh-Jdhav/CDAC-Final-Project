@@ -9,10 +9,14 @@ import com.app.model.User;
 public interface UserRepository extends JpaRepository<User, Long>
 
 {
-	
-User findByEmail(String email);
 
-@Modifying
-@Query(value ="INSERT into user (firstName,lastName,email,password) VALUES (?1,?2,?3,?4)",nativeQuery = true)
-int addUser(String firstName,String lastName,String email,String password);
+	User findByEmail(String email);
+
+	@Modifying
+	@Query(value = "INSERT into user (firstName,lastName,email,password) VALUES (?1,?2,?3,?4)", nativeQuery = true)
+	int addUser(String firstName, String lastName, String email, String password);
+	
+
+	@Query(value = "SELECT * FROM user where email = ?1", nativeQuery = true)
+	User getUserWithEmail(String email);
 }

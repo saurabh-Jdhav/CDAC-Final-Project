@@ -14,101 +14,96 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Payment 
-{
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
- private long CardId;
+public class Payment {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long CardId;
 
-@Column(unique = true)	
- private long CardNo;
- 
-@Temporal(TemporalType.DATE)
- private Date validTill;
- 
- @Column(unique = true)
- private int Cvv;
- 
- @ManyToOne(cascade= CascadeType.MERGE)
- @JoinColumn(name = "UserId")
- private User user;
- 
- private String NameOnCard;
- 
- 
- private String dateString;
+	@Column(unique = true)
+	private long CardNo;
 
- 
+	
+	@Temporal(TemporalType.DATE)
+	private Date validTill;
 
-public String getDateString() {
-	return dateString;
-}
+	@Column(unique = true)
+	private int Cvv;
 
-public void setDateString(String dateString) {
-	this.dateString = dateString;
-}
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "UserId")
+	private User user;
 
-public User getUser() {
-	return user;
-}
+	private String NameOnCard;
 
-public void setUser(User user) {
-	this.user = user;
-}
+	private String dateString;
 
-public long getCardNo() {
-	return CardNo;
-}
+	public String getDateString() {
+		return dateString;
+	}
 
-public void setCardNo(long cardNo) {
-	CardNo = cardNo;
-}
+	public void setDateString(String dateString) {
+		this.dateString = dateString;
+	}
 
-public Date getValidTill() {
-	return validTill;
-}
+	public User getUser() {
+		return user;
+	}
 
-public void setValidTill(Date validTill) {
-	this.validTill = validTill;
-}
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-public int getCvv() {
-	return Cvv;
-}
+	public long getCardNo() {
+		return CardNo;
+	}
 
-public void setCvv(int cvv) {
-	Cvv = cvv;
-}
+	public void setCardNo(long cardNo) {
+		CardNo = cardNo;
+	}
 
-public String getNameOnCard() {
-	return NameOnCard;
-}
+	public Date getValidTill() {
+		return validTill;
+	}
 
-public void setNameOnCard(String nameOnCard) {
-	NameOnCard = nameOnCard;
-}
+	public void setValidTill(Date validTill) {
+		this.validTill = validTill;
+	}
 
-public long getCardId() {
-	return CardId;
-}
+	public int getCvv() {
+		return Cvv;
+	}
 
-public void setCardId(long cardId) {
-	CardId = cardId;
-}
+	public void setCvv(int cvv) {
+		Cvv = cvv;
+	}
 
-public Payment(long cardNo, Date validTill, int cvv, String nameOnCard, long cardId) {
-	super();
-	CardNo = cardNo;
-	this.validTill = validTill;
-	Cvv = cvv;
-	NameOnCard = nameOnCard;
-	CardId = cardId;
-}
- public Payment()
- {
-	 
- }
- 
- 
- 
+	public String getNameOnCard() {
+		return NameOnCard;
+	}
+
+	public void setNameOnCard(String nameOnCard) {
+		NameOnCard = nameOnCard;
+	}
+
+	public long getCardId() {
+		return CardId;
+	}
+
+	public void setCardId(long cardId) {
+		CardId = cardId;
+	}
+
+	public Payment(long cardNo, Date validTill, int cvv, String nameOnCard, long cardId) {
+		super();
+		CardNo = cardNo;
+		//this.validTill = validTill;
+		Cvv = cvv;
+		NameOnCard = nameOnCard;
+		CardId = cardId;
+	}
+
+	public Payment() {
+
+	}
+
 }

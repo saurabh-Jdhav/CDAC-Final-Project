@@ -1,0 +1,64 @@
+if (firstName.length === 0 && lastName.length === 0 && mobileNo.length === 0 && address.length === 0 && email.length === 0 && city.length === 0 && state.length === 0 && !adhaarNo.length === 12) {
+   
+    toast.warning("please enter all details to continue !!")
+    }
+else {
+    //then we are creating object called body with that field and we are sending that to the server 
+   const postdata ={
+    firstName,
+    lastName,
+    mobileNo,
+    address,
+    email,
+    city,
+    state,
+    adhaarNo,
+};
+
+
+   ==================================
+   if (firstName === "") {
+      toast.warning("please enter your firstName")
+
+      
+
+      if (lastName === "") {
+        toast.warning("please enter your lastName")
+
+        if (mobileNo === 0) {
+          toast.warning("please enter your Mobile Number")
+
+          if (address === "") {
+            toast.warning("please enter your Address")
+
+            if (email === "") {
+              toast.warning("please enter your email")
+
+              if (city === "") {
+                toast.warning("please enter your city")
+
+                if (state === "") {
+                  toast.warning("please enter your state")
+                  
+                  if (adhaarNo === "" && adhaarNo === /^\d{12}$/) {
+                    toast.warning("please enter your Adhaar Number")
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  else {
+  //then we are creating object called body with that field and we are sending that to the server 
+  const postdata = {
+    firstName,
+    lastName,
+    mobileNo,
+    address,
+    email,
+    city,
+    state,
+    adhaarNo,
+  };

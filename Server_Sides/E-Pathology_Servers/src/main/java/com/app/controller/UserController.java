@@ -8,7 +8,10 @@ import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +28,7 @@ import com.app.exception.ReasourceNotFoundException;
 import com.app.model.User;
 import com.app.repo.UserRepository;
 import com.app.service.EmailSenderService;
+import com.app.service.OtpGenerator;
 import com.app.service.UserService;
 
 @CrossOrigin(origins = "*")
@@ -32,8 +36,19 @@ import com.app.service.UserService;
 @RequestMapping("/api/user/")
 public class UserController {
 
+
+	@Autowired
+	private Environment env;
+	
 	@Autowired
 	EmailSenderService service;
+	
+	@Autowired
+	private OtpGenerator otpGenerator;
+
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -46,6 +61,8 @@ public class UserController {
 	public List<User> getAllUser() {
 		return userRepository.findAll();
 	}
+	
+	
 
 	// user signup
 	@PostMapping("/signup")
@@ -66,17 +83,7 @@ public class UserController {
 		}
 	}
 
-	
-	
-	
-	
-//	@PostMapping("/signup")
-//	public User addUser(@RequestBody User user)
-//	{
-//		return userRepository.save(user);
-//	}
-
-	// user signin
+	// User SignIn
 	@PostMapping("/signin")
 	public ResponseEntity<?> signIn(@Valid @RequestBody Credentials cred) {
 		User user = userService.FindByEmailAndPassword(cred);
@@ -86,11 +93,13 @@ public class UserController {
 	
 	}
 	
-	// admin signin
+	// Admin SingIn
 		@PostMapping("/adminuser")
 		public String adminSignIn(@RequestBody User user) {
 			User admin = (User)user;
-			if(user.getEmail().equals("admin")&& user.getPassword().equals("admin")) {
+			String email = env.getProperty("admin.email");
+			String password = env.getProperty("admin.password");
+			if(user.getEmail().equals(email)&& user.getPassword().equals(password)) {
 				return "success";
 			}
 			return "failed";
@@ -124,14 +133,52 @@ public class UserController {
 		return ResponseEntity.ok(updateUser);
 
 	}
+	
 	public void triggerMail(String email ,String name) throws MessagingException {
 
 		service.sendEmailWithAttachment(email,
-				"Welcome" + name +" in E-Pathology Services we are here to Serv you...",
+				"Welcome " + name +" in E-Pathology Services we are here to Serv you...",
 				"from Epathology",
-				"C:\\image.jpg"
+				"E:\\image01.png"
 				);
 
+	}
+	
+	// UpdatePassword
+	@PostMapping("/updatePassword/")
+	public ResponseEntity<User> getUser(@RequestBody User userdetails) {
+		User user =userRepository.getUserWithEmail(userdetails.getEmail());
+		if(user!= null) {
+
+			String encodedpassward = passwordEncoder.encode(userdetails.getPassword());
+			user.setPassword(encodedpassward);
+
+			User updateUser = userRepository.save(user);
+			return ResponseEntity.ok(updateUser);
+		}
+		return null;
+	}	
+	
+	// Generate OTP
+	@PostMapping("/otpgenerator")
+	public ResponseEntity<?> sendOtp(@RequestBody User userdetails) {
+		User user =userRepository.getUserWithEmail(userdetails.getEmail());
+		if(user!= null) {
+		String otp = otpGenerator.generateOTP();
+		service.sendOtp(userdetails.getEmail(), otp);
+		return new ResponseEntity<>("OTP Sent Successfully", HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<>("Not have an Account", HttpStatus.UNAUTHORIZED);
+	}
+
+	// Confirm OTP
+	@PostMapping("/otpverify/{otp}")
+	public String verifyOtp(@PathVariable String otp) {
+		boolean res = OtpGenerator.verifyOtp(otp);
+		if (res)
+			return "OTP verified";
+		else
+			return "OTP Invalid Please Try Again";
 	}
 
 }

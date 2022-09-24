@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from "react"
 import axios from "axios";
 import { useNavigate } from "react-router"
@@ -49,9 +50,11 @@ const postpayment =() =>
 }
 
   return (
+    
     <section Style="background-color: #eee;">
     <div className="container py-5">
       <div className="row d-flex justify-content-center">
+      <p style={{color :"#016a01"}} className="text-center h1 fw-bold mb-2 mx-1 mx-md-4 mt-4 ">Payment</p>
         <div className="col-md-8 col-lg-6 col-xl-4">
           <div className="card rounded-3">
             <div className="card-body mx-1 my-2">
